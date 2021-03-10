@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.ecolepratique.rapport.entite.HolderCreateUserRh;
 import com.ecolepratique.rapport.entite.Rh;
@@ -52,5 +53,12 @@ public class RhApi {
 	@DeleteMapping("/{id}")
 	public Rh deleteVisiteur(@PathVariable("id") String id) {
 		return rhService.deleteRhById(id);
+	}
+	
+	@GetMapping(
+			params = {"date", "type"}
+	)
+	public Stream<Utilisateur> listRhEmbaucheByDate(@RequestParam("date") String date, @RequestParam("type") String type) {
+		return rhService.listRhByDateEmbauche(date, type);
 	}
 }

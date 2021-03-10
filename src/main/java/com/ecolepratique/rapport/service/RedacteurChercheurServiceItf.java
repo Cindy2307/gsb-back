@@ -10,4 +10,5 @@ public interface RedacteurChercheurServiceItf {
 	RedacteurChercheur updateRedacteurChercheurByid(String id, RedacteurChercheur redacteurChercheur);
 	RedacteurChercheur deleteRedacteurChercheurById(String id);
 	Stream<Utilisateur> listRedacteurChercheur();
+	Stream<Utilisateur> listRedacteurChercheurByDateEmbauche(String date, String type);
 }

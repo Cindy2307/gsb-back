@@ -66,7 +66,6 @@ public class VisiteurApi {
 			params = {"date", "type"}
 	)
 	public Stream<Utilisateur> listVisiteurEmbaucheByDate(@RequestParam("date") String date, @RequestParam("type") String type) {
-		System.out.println("RapportRestApi - listRapportAfterDate");
 		return visiteurService.listVisiteurByDateEmbauche(date, type);
 	}
 }

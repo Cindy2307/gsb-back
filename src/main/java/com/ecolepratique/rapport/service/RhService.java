@@ -32,7 +32,6 @@ public class RhService implements RhServiceItf {
 		return rhDao.save(rh);
 	}
 	
-	// PB car affiche tous les utilisateurs et pas seulement les RH
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Stream<Utilisateur> listRh() {
@@ -60,5 +59,19 @@ public class RhService implements RhServiceItf {
 		Rh rh = findRhById(id);
 		rhDao.deleteById(id);
 		return rh;
+	}
+	
+	@RolesAllowed("ROLE_RH")
+	@Override
+	public Stream<Utilisateur> listRhByDateEmbauche(String date, String type) {
+		String[] tab = date.split("-");
+		Stream<Utilisateur> rhs = null;
+		if (type.equals("after"))
+			rhs = rhDao.findByDateEmbaucheAfter(
+					LocalDate.of(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2]))).stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.Rh");
+		else if (type.equals("before"))
+			rhs = rhDao.findByDateEmbaucheBefore(
+					LocalDate.of(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2]))).stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.Rh");
+		return rhs;
 	}
 }

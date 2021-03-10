@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.ecolepratique.rapport.entite.HolderCreateUserRedacteurChercheur;
 import com.ecolepratique.rapport.entite.RedacteurChercheur;
@@ -22,12 +23,12 @@ import com.ecolepratique.rapport.service.RedacteurChercheurServiceItf;
 @CrossOrigin("*")
 public class RedacteurChercheurApi {
 	@Autowired
-	private RedacteurChercheurServiceItf RedacteurChercheurService;
+	private RedacteurChercheurServiceItf redacteurChercheurService;
 
 	@GetMapping("")
 	public Stream<Utilisateur> listRedacteurChercheur() {
 		System.out.println("RedacteurChercheurRestApi - listRedacteurChercheur");
-		Stream<Utilisateur> redacteurChercheurs = RedacteurChercheurService.listRedacteurChercheur();
+		Stream<Utilisateur> redacteurChercheurs = redacteurChercheurService.listRedacteurChercheur();
 		System.out.println(
 				"RedacteurChercheurRestApi - listRedacteurChercheur redacteurChercheur=" + redacteurChercheurs);
 		return redacteurChercheurs;
@@ -36,24 +37,30 @@ public class RedacteurChercheurApi {
 	@GetMapping("/{id}")
 	public RedacteurChercheur getRedacteurChercheur(@PathVariable("id") String id) {
 		System.out.println("VisiteurRestApi - get(id) ");
-		return RedacteurChercheurService.findRedacteurChercheurById(id);
+		return redacteurChercheurService.findRedacteurChercheurById(id);
 	}
 
 	@PostMapping("")
 	public RedacteurChercheur createRedacteurChercheur(@Valid @RequestBody HolderCreateUserRedacteurChercheur holder) {
 		System.out.println("RedacteurChercheurRestApi - create redacteurChercheur=" + holder);
-		return RedacteurChercheurService.createRedacteurChercheur(holder.getRedacteurChercheur(), holder.getPassword());
+		return redacteurChercheurService.createRedacteurChercheur(holder.getRedacteurChercheur(), holder.getPassword());
 	}
 
 	@PutMapping("/{id}")
 	public RedacteurChercheur updateRedacteurChercheur(@PathVariable("id") String id,
 			@Valid @RequestBody RedacteurChercheur redacteurChercheur) {
-		return RedacteurChercheurService.updateRedacteurChercheurByid(id, redacteurChercheur);
+		return redacteurChercheurService.updateRedacteurChercheurByid(id, redacteurChercheur);
 	}
 
 	@DeleteMapping("/{id}")
 	public RedacteurChercheur deleteRedacteurChercheur(@PathVariable("id") String id) {
-		return RedacteurChercheurService.deleteRedacteurChercheurById(id);
+		return redacteurChercheurService.deleteRedacteurChercheurById(id);
 	}
 
+	@GetMapping(
+			params = {"date", "type"}
+	)
+	public Stream<Utilisateur> listRedacteurChercheurByDateEmbauche(@RequestParam("date") String date, @RequestParam("type") String type) {
+		return redacteurChercheurService.listRedacteurChercheurByDateEmbauche(date, type);
+	}
 }

@@ -61,5 +61,19 @@ public class RedacteurChercheurService implements RedacteurChercheurServiceItf {
 		redacteurChercheurDao.deleteById(id);
 		return redacteurChercheur;
 	}
+	
+	@RolesAllowed("ROLE_RH")
+	@Override
+	public Stream<Utilisateur> listRedacteurChercheurByDateEmbauche(String date, String type) {
+		String[] tab = date.split("-");
+		Stream<Utilisateur> rcs = null;
+		if (type.equals("after"))
+			rcs = redacteurChercheurDao.findByDateEmbaucheAfter(
+					LocalDate.of(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2]))).stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.RedacteurChercheur");
+		else if (type.equals("before"))
+			rcs = redacteurChercheurDao.findByDateEmbaucheBefore(
+					LocalDate.of(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2]))).stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.RedacteurChercheur");
+		return rcs;
+	}
 
 }
