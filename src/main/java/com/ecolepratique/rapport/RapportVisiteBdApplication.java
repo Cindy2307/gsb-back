@@ -1,9 +1,11 @@
 package com.ecolepratique.rapport;
 
 import java.time.LocalDate;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+
 import com.ecolepratique.rapport.dao.RapportDaoItf;
 import com.ecolepratique.rapport.dao.RedacteurChercheurDaoItf;
 import com.ecolepratique.rapport.dao.RhDaoItf;
@@ -20,6 +22,7 @@ import com.ecolepratique.rapport.entite.UserRole;
 import com.ecolepratique.rapport.entite.Visiteur;
 import com.ecolepratique.rapport.service.MedicamentServiceItf;
 import com.ecolepratique.rapport.service.RapportServiceItf;
+import com.ecolepratique.rapport.service.RhServiceItf;
 
 @SpringBootApplication
 public class RapportVisiteBdApplication {
@@ -34,6 +37,7 @@ public class RapportVisiteBdApplication {
 		UserDaoItf userDao = ctx.getBean(UserDaoItf.class);
 		RedacteurChercheurDaoItf redacteurChercheurDao = ctx.getBean(RedacteurChercheurDaoItf.class);
 		RhDaoItf rhDao = ctx.getBean(RhDaoItf.class);
+		RhServiceItf rhService = ctx.getBean(RhServiceItf.class);
 		
 		Visiteur visiteur1 = new Visiteur("Coco", "ollive", "cindy", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(1995, 07, 23));
 		User user1 = new User("Coco", "coucou");
@@ -88,11 +92,17 @@ public class RapportVisiteBdApplication {
 		rhDao.save(rh1);
 		userDao.save(user4);
 		
+		Rh rh2 = new Rh("Coco5", "ollive5", "cindy5", "108 bd de la valbarelle BT D2", 13010, "Marseille", LocalDate.of(1995, 07, 3));
+		User user5 = new User("Coco5", "coucou5");
+		utilisateurRoleDao.save(new UserRole("Coco5","RH"));
+		rhDao.save(rh2);
+		userDao.save(user5);
+		
 		Visiteur visiteur3 = new Visiteur("Benji", "Benjamin", "desMarseillais", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(1995, 07, 23));
-		User user5 = new User("Benji", "coucou5");
+		User user6 = new User("Benji", "coucou6");
 		utilisateurRoleDao.save(new UserRole("Benji","VIS"));
 		visiteurDao.save(visiteur3);
-		userDao.save(user5);
+		userDao.save(user6);
 		
 		Medicament medicament1 = new Medicament("LEVOTHYROX"); 
 		Medicament medicament2 = new Medicament("TAHOR"); 
@@ -214,6 +224,8 @@ public class RapportVisiteBdApplication {
 		rapportService.createOffreEchantillon(rapport2.getId(), offre1);
 		rapportService.createOffreEchantillon(rapport2.getId(), offre2);
 		
+		
+		System.out.println(rhService.numberOfRh());
 	}
 }
 

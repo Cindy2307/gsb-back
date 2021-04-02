@@ -11,4 +11,5 @@ public interface RhServiceItf {
 	Rh deleteRhById(String id);
 	Stream<Utilisateur> listRh();
 	Stream<Utilisateur> listRhByDateEmbauche(String date, String type);
+	Long numberOfRh();
 }

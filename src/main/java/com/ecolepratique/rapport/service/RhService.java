@@ -74,4 +74,11 @@ public class RhService implements RhServiceItf {
 					LocalDate.of(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2]))).stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.Rh");
 		return rhs;
 	}
+
+	@Override
+	public Long numberOfRh() {
+		return listRh().count();
+	}
+	
+	
 }
