@@ -10,9 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 @RestController
 @RequestMapping("")
 public class Logout {
+	
+	/**
+	 * @param request
+	 * @param response
+	 */
 	@GetMapping("/logout")
 	public void logout (HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();

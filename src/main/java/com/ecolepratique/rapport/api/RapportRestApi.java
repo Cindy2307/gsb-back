@@ -36,7 +36,7 @@ public class RapportRestApi {
 	public Rapport getRapportById(@PathVariable("id") Long id) {
 		System.out.println("RapportRestApi - getRapportByVisiteur");
 		return rapportService.findRapportById(id);
-	}	
+	}
 	@PutMapping("/{id}")
 	public Rapport update(@PathVariable("id") Long id, @Valid @RequestBody Rapport rapport) {
 		return rapportService.updateRapport(id, rapport);
@@ -59,7 +59,6 @@ public class RapportRestApi {
 		System.out.println("RapportRestApi - listRapportAfterDate");
 		return rapportService.listRapportByDate(date, type);
 	}
-	
 	@PostMapping("/{id}/offre")
 	public OffreEchantillon create(@PathVariable("id") Long idRapport, @RequestBody OffreEchantillon offre) {
         return rapportService.createOffreEchantillon(idRapport, offre);

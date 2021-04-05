@@ -24,7 +24,7 @@ import com.ecolepratique.rapport.service.VisiteurServiceItf;
 @RestController
 @RequestMapping("/visiteur")
 @CrossOrigin("*")
-public class VisiteurApi {
+public class VisiteurRestApi {
 	@Autowired
 	private VisiteurServiceItf visiteurService;
 	
@@ -61,7 +61,7 @@ public class VisiteurApi {
 	@PostMapping("/{id}/rapport")
 	public Rapport create(@PathVariable("id") String idVisiteur,@Valid @RequestBody Rapport rapport) {
         return visiteurService.createRapport(idVisiteur, rapport);
-	}	
+	}
 	@GetMapping(
 			params = {"date", "type"}
 	)

@@ -46,8 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	System.out.println("WebSecurityConfig - configure");
     	// Permettre aprés modification de modifier des données 
-        http.csrf().disable();
-        http.cors();
+        http.cors().and().csrf().disable();
+        
         // Toutes les requêtes envoyées a serveur web doivent être authentifiées
         http.authorizeRequests().anyRequest().authenticated();
  

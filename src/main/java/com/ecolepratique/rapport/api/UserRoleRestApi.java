@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.ecolepratique.rapport.entite.UserRole;
 import com.ecolepratique.rapport.service.UserRoleServiceItf;
 import com.ecolepratique.rapport.util.Utils;
 
@@ -16,7 +17,7 @@ public class UserRoleRestApi {
 	private UserRoleServiceItf userRoleService;
 	
 	@GetMapping("")
-	public String login() {
+	public UserRole login() {
 		String login = Utils.getLogin();
         return userRoleService.getUserRoleById(login);
 	}

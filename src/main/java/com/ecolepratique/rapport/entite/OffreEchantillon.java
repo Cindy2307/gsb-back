@@ -3,7 +3,7 @@ package com.ecolepratique.rapport.entite;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
@@ -12,9 +12,9 @@ public class OffreEchantillon {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Min(1)@Max(10)
+	@Max(10)
 	private int quantite;
-	@OneToOne
+	@ManyToOne
 	private Medicament medicament;
 	
 	public OffreEchantillon() {}

@@ -21,7 +21,7 @@ import com.ecolepratique.rapport.service.RhServiceItf;
 @RestController
 @RequestMapping("/rh")
 @CrossOrigin("*")
-public class RhApi {
+public class RhRestApi {
 	@Autowired
 	private RhServiceItf rhService;
 
@@ -32,29 +32,24 @@ public class RhApi {
 		System.out.println("RhRestApi - listRh rhs=" + rhs);
 		return rhs;
 	}
-
 	@GetMapping("/{id}")
 	public Rh getVisiteur(@PathVariable("id") String id) {
 		System.out.println("VisiteurRestApi - get(id) ");
 		return rhService.findRhById(id);
 	}
-
 	@PostMapping("")
 	public Rh createRh(@Valid @RequestBody HolderCreateUserRh holder) {
 		System.out.println("VisiteurRestApi - create visiteur=" + holder);
 		return rhService.createRh(holder.getRh(), holder.getPassword());
 	}
-
 	@PutMapping("/{id}")
 	public Rh updateRh(@PathVariable("id") String id, @Valid @RequestBody Rh rh) {
 		return rhService.updateRhByid(id, rh);
 	}
-
 	@DeleteMapping("/{id}")
 	public Rh deleteVisiteur(@PathVariable("id") String id) {
 		return rhService.deleteRhById(id);
 	}
-	
 	@GetMapping(
 			params = {"date", "type"}
 	)

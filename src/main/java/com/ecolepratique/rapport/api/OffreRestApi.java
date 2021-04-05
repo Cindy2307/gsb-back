@@ -32,7 +32,7 @@ public class OffreRestApi {
 	public OffreEchantillon getOffreEchantillonById(@PathVariable("id") Long id) {
 		System.out.println("OffreRestApi - getOffreById");
 		return offreService.findOffreEchantillonById(id);
-	}	
+	}
 	@PutMapping("/{id}")
 	public OffreEchantillon update(@PathVariable("id") Long id, @Valid @RequestBody OffreEchantillon offre) {
 		return offreService.updateOffreEchantillonByid(id, offre);

@@ -1,6 +1,9 @@
 package com.ecolepratique.rapport.service;
 
 import java.util.List;
+
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ public class MedicamentService implements MedicamentServiceItf {
 	@Autowired
 	private MedicamentDaoItf medicamentDao;
 	
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public List<Medicament> list() {
 		return medicamentDao.findAll();

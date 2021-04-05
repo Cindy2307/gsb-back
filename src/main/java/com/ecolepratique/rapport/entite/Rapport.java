@@ -12,28 +12,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
-
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Rapport {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(nullable = false)
 	private LocalDate date;
 	@Column(columnDefinition = "TEXT", nullable=false)
-	@NotNull
+	@NotNull(message="Le bilan ne doit pas être nul.")
 	@NotEmpty(message="Le bilan ne doit pas être vide.")
 	private String bilan;
 	@Column(columnDefinition="TEXT", nullable=false)
-	@NotNull
-	@NotEmpty(message="Le bilan ne doit pas être vide.")
+	@NotNull(message="Le motif ne doit pas être nul.")
+	@NotEmpty(message="Le motif ne doit pas être vide.")
 	private String motif;
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<OffreEchantillon> offres;
 	
 	public Rapport() {

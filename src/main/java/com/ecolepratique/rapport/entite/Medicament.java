@@ -3,16 +3,14 @@ package com.ecolepratique.rapport.entite;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
-
-import com.sun.istack.NotNull;
 
 @Entity
 public class Medicament implements Serializable {
@@ -20,7 +18,8 @@ public class Medicament implements Serializable {
 	@GeneratedValue
 	private Long numDepotLegal;
 	@Column(length=50)
-	@NotNull
+	@NotNull(message="Le nom du médicament ne peut être nul.")
+	@NotEmpty(message="Le nom du médicament ne peut être vide.")
 	@Length(min=2, max=30, message="Le nom du médicament doit être compris entre 2 et 30 caractères.")
 	private String nomCommercial;
 	@ElementCollection

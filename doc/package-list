@@ -1,0 +1,8 @@
+com.ecolepratique.rapport
+com.ecolepratique.rapport.api
+com.ecolepratique.rapport.dao
+com.ecolepratique.rapport.entite
+com.ecolepratique.rapport.erreurs
+com.ecolepratique.rapport.securite
+com.ecolepratique.rapport.service
+com.ecolepratique.rapport.util

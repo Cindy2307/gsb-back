@@ -21,7 +21,7 @@ import com.ecolepratique.rapport.service.RedacteurChercheurServiceItf;
 @RestController
 @RequestMapping("/redacteurchercheur")
 @CrossOrigin("*")
-public class RedacteurChercheurApi {
+public class RedacteurChercheurRestApi {
 	@Autowired
 	private RedacteurChercheurServiceItf redacteurChercheurService;
 
@@ -33,30 +33,25 @@ public class RedacteurChercheurApi {
 				"RedacteurChercheurRestApi - listRedacteurChercheur redacteurChercheur=" + redacteurChercheurs);
 		return redacteurChercheurs;
 	}
-
 	@GetMapping("/{id}")
 	public RedacteurChercheur getRedacteurChercheur(@PathVariable("id") String id) {
 		System.out.println("VisiteurRestApi - get(id) ");
 		return redacteurChercheurService.findRedacteurChercheurById(id);
 	}
-
 	@PostMapping("")
 	public RedacteurChercheur createRedacteurChercheur(@Valid @RequestBody HolderCreateUserRedacteurChercheur holder) {
 		System.out.println("RedacteurChercheurRestApi - create redacteurChercheur=" + holder);
 		return redacteurChercheurService.createRedacteurChercheur(holder.getRedacteurChercheur(), holder.getPassword());
 	}
-
 	@PutMapping("/{id}")
 	public RedacteurChercheur updateRedacteurChercheur(@PathVariable("id") String id,
 			@Valid @RequestBody RedacteurChercheur redacteurChercheur) {
 		return redacteurChercheurService.updateRedacteurChercheurByid(id, redacteurChercheur);
 	}
-
 	@DeleteMapping("/{id}")
 	public RedacteurChercheur deleteRedacteurChercheur(@PathVariable("id") String id) {
 		return redacteurChercheurService.deleteRedacteurChercheurById(id);
 	}
-
 	@GetMapping(
 			params = {"date", "type"}
 	)

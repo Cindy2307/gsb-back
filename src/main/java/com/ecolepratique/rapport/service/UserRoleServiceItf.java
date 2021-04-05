@@ -1,5 +1,7 @@
 package com.ecolepratique.rapport.service;
 
+import com.ecolepratique.rapport.entite.UserRole;
+
 public interface UserRoleServiceItf {
-	String getUserRoleById(String login);
+	UserRole getUserRoleById(String login);
 }

@@ -6,6 +6,9 @@ import com.ecolepratique.rapport.entite.OffreEchantillon;
 import com.ecolepratique.rapport.entite.Rapport;
 import java.time.LocalDate;
 import java.util.List;
+
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +20,17 @@ public class RapportService implements RapportServiceItf {
 	@Autowired
 	private OffreEchantillonDaoItf offreDao;
 	
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public Rapport findRapportById(Long id) {
 		return rapportDao.findById(id).get();
 	}
+	@RolesAllowed("ROLE_RC")
 	@Override
 	public List<Rapport> listRapport() {
 		return rapportDao.findAll();
 	}
+	@RolesAllowed("ROLE_VIS")
 	@Override
 	public Rapport updateRapport(Long id, Rapport rapport) {
 		Rapport ancienRapport = findRapportById(id);
@@ -33,12 +39,14 @@ public class RapportService implements RapportServiceItf {
 		rapport.setOffres(ancienRapport.getOffres());
 		return rapportDao.save(rapport);
 	}
+	@RolesAllowed("ROLE_VIS")
 	@Override
 	public Rapport deleteById(Long id) {
 		Rapport rapport = findRapportById(id);
 		rapportDao.deleteById(id);
 		return rapport;
 	}
+	@RolesAllowed("ROLE_RC")
 	@Override
 	public List<Rapport> listRapportByChampEtMotCle(String champ, String motCle){
 		List<Rapport> rapports = null;
@@ -50,6 +58,7 @@ public class RapportService implements RapportServiceItf {
 		}
 		return rapports;
 	}
+	@RolesAllowed("ROLE_RC")
 	@Override
 	public List<Rapport> listRapportByDate(String date, String type){
 		String[] tab = date.split("-"); 
@@ -60,6 +69,7 @@ public class RapportService implements RapportServiceItf {
 			rapports = rapportDao.findByDateBefore(LocalDate.of(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2])));
 		return rapports;
 	}
+	@RolesAllowed("ROLE_VIS")
 	@Override
 	public OffreEchantillon createOffreEchantillon(Long idRapport, OffreEchantillon offre) {
 		offre = offreDao.save(offre);

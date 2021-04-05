@@ -1,11 +1,10 @@
 package com.ecolepratique.rapport;
 
 import java.time.LocalDate;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-
+import com.ecolepratique.rapport.dao.OffreEchantillonDaoItf;
 import com.ecolepratique.rapport.dao.RapportDaoItf;
 import com.ecolepratique.rapport.dao.RedacteurChercheurDaoItf;
 import com.ecolepratique.rapport.dao.RhDaoItf;
@@ -31,16 +30,16 @@ public class RapportVisiteBdApplication {
 		ApplicationContext ctx = SpringApplication.run(RapportVisiteBdApplication.class, args);
 		RapportDaoItf  rapportDao = ctx.getBean(RapportDaoItf.class);
 		VisiteurDaoItf visiteurDao = ctx.getBean(VisiteurDaoItf.class);
-		RapportServiceItf rapportService = ctx.getBean(RapportServiceItf.class);
 		MedicamentServiceItf medicamentService = ctx.getBean(MedicamentServiceItf.class);
 		UserRoleDaoItf utilisateurRoleDao = ctx.getBean(UserRoleDaoItf.class);
 		UserDaoItf userDao = ctx.getBean(UserDaoItf.class);
 		RedacteurChercheurDaoItf redacteurChercheurDao = ctx.getBean(RedacteurChercheurDaoItf.class);
 		RhDaoItf rhDao = ctx.getBean(RhDaoItf.class);
 		RhServiceItf rhService = ctx.getBean(RhServiceItf.class);
+		OffreEchantillonDaoItf offreDao = ctx.getBean(OffreEchantillonDaoItf.class);
 		
 		Visiteur visiteur1 = new Visiteur("Coco", "ollive", "cindy", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(1995, 07, 23));
-		User user1 = new User("Coco", "coucou");
+		User user1 = new User("Coco", "Coucou_13");
 		utilisateurRoleDao.save(new UserRole("Coco","VIS"));
 		visiteurDao.save(visiteur1);
 		userDao.save(user1);
@@ -60,7 +59,7 @@ public class RapportVisiteBdApplication {
 		visiteurDao.save(visiteur1);
 		
 		Visiteur visiteur2 = new Visiteur("Coco2", "ollive2", "cindy2", "108 bd de la valbarelle BT D4", 13012, "Marseille", LocalDate.of(1995, 07, 25));
-		User user2 = new User("Coco2", "coucou2");
+		User user2 = new User("Coco2", "Coucou2_13");
 		utilisateurRoleDao.save(new UserRole("Coco2","VIS"));
 		visiteurDao.save(visiteur2);
 		userDao.save(user2);
@@ -81,25 +80,25 @@ public class RapportVisiteBdApplication {
 		visiteurDao.save(visiteur2);
 		
 		RedacteurChercheur redacteur1 = new RedacteurChercheur("Coco3", "ollive3", "cindy3", "108 bd de la valbarelle BT D2", 13013, "Marseille", LocalDate.of(1995, 07, 27));
-		User user3 = new User("Coco3", "coucou3");
+		User user3 = new User("Coco3", "Coucou3_13");
 		utilisateurRoleDao.save(new UserRole("Coco3","RC"));
 		redacteurChercheurDao.save(redacteur1);
 		userDao.save(user3);
 		
 		Rh rh1 = new Rh("Coco4", "ollive4", "cindy4", "108 bd de la valbarelle BT D1", 13014, "Marseille", LocalDate.of(1995, 07, 31));
-		User user4 = new User("Coco4", "coucou4");
+		User user4 = new User("Coco4", "Coucou4_13");
 		utilisateurRoleDao.save(new UserRole("Coco4","RH"));
 		rhDao.save(rh1);
 		userDao.save(user4);
 		
 		Rh rh2 = new Rh("Coco5", "ollive5", "cindy5", "108 bd de la valbarelle BT D2", 13010, "Marseille", LocalDate.of(1995, 07, 3));
-		User user5 = new User("Coco5", "coucou5");
+		User user5 = new User("Coco5", "Coucou5_13");
 		utilisateurRoleDao.save(new UserRole("Coco5","RH"));
 		rhDao.save(rh2);
 		userDao.save(user5);
 		
 		Visiteur visiteur3 = new Visiteur("Benji", "Benjamin", "desMarseillais", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(1995, 07, 23));
-		User user6 = new User("Benji", "coucou6");
+		User user6 = new User("Benji", "Coucou6_13");
 		utilisateurRoleDao.save(new UserRole("Benji","VIS"));
 		visiteurDao.save(visiteur3);
 		userDao.save(user6);
@@ -221,9 +220,12 @@ public class RapportVisiteBdApplication {
 		
 		OffreEchantillon offre1 = new OffreEchantillon(10, medicament7);
 		OffreEchantillon offre2 = new OffreEchantillon(5, medicament7);
-		rapportService.createOffreEchantillon(rapport2.getId(), offre1);
-		rapportService.createOffreEchantillon(rapport2.getId(), offre2);
+		offreDao.save(offre1);
+		offreDao.save(offre2);
+		rapport2.addOffre(offre1);
+		rapport2.addOffre(offre2);
 		
+		rapportDao.save(rapport2);
 		
 		System.out.println(rhService.numberOfRh());
 	}

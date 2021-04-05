@@ -64,9 +64,6 @@ public class VisiteurService implements VisiteurServiceItf {
 	@Override
 	public Visiteur deleteVisiteurById(String id) {
 		Visiteur visiteur = findVisiteurById(id);
-		for (Rapport rapport : visiteur.getRapports()) {
-			rapportDao.deleteById(rapport.getId());
-		}
 		visiteurDao.deleteById(id);
 		return visiteur;
 	}
