@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class Logout {
 	
 	/**
-	 * @param request
-	 * @param response
+	 * @param request Requête de déconnexion
+	 * @param response Réponse à la requête
 	 */
 	@GetMapping("/logout")
 	public void logout (HttpServletRequest request, HttpServletResponse response) {

@@ -20,14 +20,18 @@ public class MedicamentService implements MedicamentServiceItf {
 	public List<Medicament> list() {
 		return medicamentDao.findAll();
 	}
+	
 	@Override
 	public Medicament create(Medicament medicament) {
 		return medicamentDao.save(medicament);
 	}
+	
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public Medicament getByNumDepotLegal(Long numDepotLegal) {
 		return medicamentDao.findById(numDepotLegal).get();
 	}
+	
 	@Override
 	public Medicament deleteByNumDepotLegal(Long numDepotLegal) {
 		Medicament medicament = getByNumDepotLegal(numDepotLegal);
@@ -40,22 +44,32 @@ public class MedicamentService implements MedicamentServiceItf {
 		medicament.setNumDepotLegal(numDepotLegal);
 		return medicamentDao.save(medicament);
 	}
+	
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public List<Medicament> listByPage(int numPage, int taille) {
 		return medicamentDao.findAll(PageRequest.of(numPage,taille)).getContent();
 	}
+	
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public Medicament getByNomCommercial(String nomCommercial) {
 		return medicamentDao.findByNomCommercial(nomCommercial);
 	}
+	
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public List<Medicament> getByNomCommercialLike(String mc) {
 		return medicamentDao.findByNomCommercialLike("%"+mc+"%");
 	}
+	
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public List<Medicament> listOrderByNomCommercial() {
 		return medicamentDao.findAllByOrderByNomCommercial();
 	}
+	
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public List<Medicament> getByNomCommercialLikeOrder(String mc){
 		return medicamentDao.findByNomCommercialLikeOrderByNomCommercial("%"+mc+"%");

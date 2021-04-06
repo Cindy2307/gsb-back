@@ -14,13 +14,13 @@ public class OffreEchantillonService implements OffreEchantillonServiceItf{
 	@Autowired
 	private OffreEchantillonDaoItf offreDao;
 
-	@RolesAllowed("ROLE_VIS")
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public OffreEchantillon findOffreEchantillonById(Long id) {
 		return offreDao.findById(id).get();
 	}
 
-	@RolesAllowed("ROLE_VIS")
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public OffreEchantillon updateOffreEchantillonByid(Long id, OffreEchantillon offre) {
 		OffreEchantillon ancienneOffre = findOffreEchantillonById(id);
@@ -29,7 +29,7 @@ public class OffreEchantillonService implements OffreEchantillonServiceItf{
 		return offreDao.save(offre);
 	}
 
-	@RolesAllowed("ROLE_VIS")
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public OffreEchantillon deleteOffreEchantillon(Long id) {
 		OffreEchantillon offre = findOffreEchantillonById(id);
@@ -37,7 +37,7 @@ public class OffreEchantillonService implements OffreEchantillonServiceItf{
 		return offre;
 	}
 
-	@RolesAllowed("ROLE_VIS")
+	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public List<OffreEchantillon> listOffreEchantillon() {
 		return offreDao.findAll();

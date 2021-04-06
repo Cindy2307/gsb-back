@@ -79,7 +79,7 @@ public class VisiteurService implements VisiteurServiceItf {
 		return rapport;
 	}
 
-	@RolesAllowed("ROLE_RC")
+	@RolesAllowed({"ROLE_RC", "ROLE_VIS"})
 	@Override
 	public List<Rapport> listRapportByIdVisiteur(String idVisiteur) {
 		return findVisiteurById(idVisiteur).getRapports();
