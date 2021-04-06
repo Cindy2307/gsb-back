@@ -6,6 +6,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 public class HolderCreateUserRedacteurChercheur {
 	@Column(nullable = false)
 	@NotEmpty(message="Le mot de passe ne peut être vide.")
@@ -32,18 +37,34 @@ public class HolderCreateUserRedacteurChercheur {
 				+ "]";
 	}
 
+	/**
+	 * 
+	 * @return Mot de passe du rédacteur/chercheur
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * 
+	 * @param password Mot de passe saisi
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * 
+	 * @return Rédacteur/chercheur
+	 */
 	public RedacteurChercheur getRedacteurChercheur() {
 		return redacteurChercheur;
 	}
 
+	/**
+	 * 
+	 * @param redacteurChercheur Rédacteur/Chercheur saisi
+	 */
 	public void setRedacteurChercheur(RedacteurChercheur redacteurChercheur) {
 		this.redacteurChercheur = redacteurChercheur;
 	}

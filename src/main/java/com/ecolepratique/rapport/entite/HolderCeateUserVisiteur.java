@@ -6,6 +6,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 public class HolderCeateUserVisiteur {
 	@Column(nullable = false)
 	@NotEmpty(message="Le mot de passe ne peut être vide.")
@@ -31,18 +36,34 @@ public class HolderCeateUserVisiteur {
 		return "Holder [password=" + password + ", visiteur=" + visiteur + "]";
 	}
 
+	/**
+	 * 
+	 * @return Mot de passe du visiteur
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * 
+	 * @param password Mot de passe saisi
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * 
+	 * @return Visiteur
+	 */
 	public Visiteur getVisiteur() {
 		return visiteur;
 	}
 
+	/**
+	 * 
+	 * @param visiteur Visiteur saisi
+	 */
 	public void setVisiteur(Visiteur visiteur) {
 		this.visiteur = visiteur;
 	}
