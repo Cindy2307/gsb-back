@@ -31,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Autowired
 	DataSource dataSource;
+    
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
@@ -42,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(new BCryptPasswordEncoder())
 			.rolePrefix("ROLE_");
 	}
+	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	System.out.println("WebSecurityConfig - configure");
