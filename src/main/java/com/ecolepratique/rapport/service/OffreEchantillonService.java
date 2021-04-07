@@ -9,17 +9,29 @@ import org.springframework.stereotype.Service;
 import com.ecolepratique.rapport.dao.OffreEchantillonDaoItf;
 import com.ecolepratique.rapport.entite.OffreEchantillon;
 
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 @Service
 public class OffreEchantillonService implements OffreEchantillonServiceItf{
+	
 	@Autowired
 	private OffreEchantillonDaoItf offreDao;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public OffreEchantillon findOffreEchantillonById(Long id) {
 		return offreDao.findById(id).get();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public OffreEchantillon updateOffreEchantillonByid(Long id, OffreEchantillon offre) {
@@ -29,6 +41,9 @@ public class OffreEchantillonService implements OffreEchantillonServiceItf{
 		return offreDao.save(offre);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public OffreEchantillon deleteOffreEchantillon(Long id) {
@@ -37,6 +52,9 @@ public class OffreEchantillonService implements OffreEchantillonServiceItf{
 		return offre;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public List<OffreEchantillon> listOffreEchantillon() {

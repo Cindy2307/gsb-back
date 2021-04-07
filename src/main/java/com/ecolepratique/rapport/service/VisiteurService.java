@@ -17,17 +17,29 @@ import com.ecolepratique.rapport.entite.UserRole;
 import com.ecolepratique.rapport.entite.Utilisateur;
 import com.ecolepratique.rapport.entite.Visiteur;
 
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 @Service
 public class VisiteurService implements VisiteurServiceItf {
+	
 	@Autowired
 	private VisiteurDaoItf visiteurDao;
+	
 	@Autowired
 	private RapportDaoItf rapportDao;
+	
 	@Autowired
 	private UserRoleDaoItf utilisateurRoleDao;
+	
 	@Autowired
 	private UserDaoItf userDao;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Visiteur createVisiteur(Visiteur visiteur, String password) {
@@ -38,18 +50,27 @@ public class VisiteurService implements VisiteurServiceItf {
 		return visiteurDao.save(visiteur);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Stream<Utilisateur> listVisiteur() {
 		return visiteurDao.findAll().stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.Visiteur");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Visiteur findVisiteurById(String id) {
 		return (Visiteur) visiteurDao.findById(id).get();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Visiteur updateVisiteurByid(String id, Visiteur visiteur) {
@@ -60,6 +81,9 @@ public class VisiteurService implements VisiteurServiceItf {
 		return visiteurDao.save(visiteur);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Visiteur deleteVisiteurById(String id) {
@@ -68,6 +92,9 @@ public class VisiteurService implements VisiteurServiceItf {
 		return visiteur;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_VIS")
 	@Override
 	public Rapport createRapport(String idVisiteur, Rapport rapport) {
@@ -79,12 +106,18 @@ public class VisiteurService implements VisiteurServiceItf {
 		return rapport;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed({"ROLE_RC", "ROLE_VIS"})
 	@Override
 	public List<Rapport> listRapportByIdVisiteur(String idVisiteur) {
 		return findVisiteurById(idVisiteur).getRapports();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Stream<Utilisateur> listVisiteurByDateEmbauche(String date, String type) {

@@ -13,15 +13,26 @@ import com.ecolepratique.rapport.entite.User;
 import com.ecolepratique.rapport.entite.UserRole;
 import com.ecolepratique.rapport.entite.Utilisateur;
 
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 @Service
 public class RhService implements RhServiceItf {
+	
 	@Autowired
 	private RhDaoItf rhDao;
+	
 	@Autowired
 	private UserRoleDaoItf utilisateurRoleDao;
+	
 	@Autowired
 	private UserDaoItf userDao;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Rh createRh(Rh rh, String password) {
@@ -32,18 +43,27 @@ public class RhService implements RhServiceItf {
 		return rhDao.save(rh);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Stream<Utilisateur> listRh() {
 		return rhDao.findAll().stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.Rh");
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Rh findRhById(String id) {
 		return (Rh) rhDao.findById(id).get();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Rh updateRhByid(String id, Rh rh) {
@@ -53,6 +73,9 @@ public class RhService implements RhServiceItf {
 		return rhDao.save(rh);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Rh deleteRhById(String id) {
@@ -61,6 +84,9 @@ public class RhService implements RhServiceItf {
 		return rh;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Stream<Utilisateur> listRhByDateEmbauche(String date, String type) {
@@ -75,6 +101,9 @@ public class RhService implements RhServiceItf {
 		return rhs;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Long numberOfRh() {
 		return listRh().count();

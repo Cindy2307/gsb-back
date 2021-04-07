@@ -12,24 +12,41 @@ import javax.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 @Service
 public class RapportService implements RapportServiceItf {
+	
 	@Autowired
 	private RapportDaoItf rapportDao;
 	
 	@Autowired
 	private OffreEchantillonDaoItf offreDao;
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed({"ROLE_VIS", "ROLE_RC"})
 	@Override
 	public Rapport findRapportById(Long id) {
 		return rapportDao.findById(id).get();
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RC")
 	@Override
 	public List<Rapport> listRapport() {
 		return rapportDao.findAll();
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_VIS")
 	@Override
 	public Rapport updateRapport(Long id, Rapport rapport) {
@@ -39,6 +56,10 @@ public class RapportService implements RapportServiceItf {
 		rapport.setOffres(ancienRapport.getOffres());
 		return rapportDao.save(rapport);
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_VIS")
 	@Override
 	public Rapport deleteById(Long id) {
@@ -46,6 +67,10 @@ public class RapportService implements RapportServiceItf {
 		rapportDao.deleteById(id);
 		return rapport;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RC")
 	@Override
 	public List<Rapport> listRapportByChampEtMotCle(String champ, String motCle){
@@ -58,6 +83,10 @@ public class RapportService implements RapportServiceItf {
 		}
 		return rapports;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RC")
 	@Override
 	public List<Rapport> listRapportByDate(String date, String type){
@@ -69,6 +98,10 @@ public class RapportService implements RapportServiceItf {
 			rapports = rapportDao.findByDateBefore(LocalDate.of(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2])));
 		return rapports;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_VIS")
 	@Override
 	public OffreEchantillon createOffreEchantillon(Long idRapport, OffreEchantillon offre) {

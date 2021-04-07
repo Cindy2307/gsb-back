@@ -7,12 +7,20 @@ import org.springframework.stereotype.Service;
 import com.ecolepratique.rapport.dao.UserRoleDaoItf;
 import com.ecolepratique.rapport.entite.UserRole;
 
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 @Service
 public class UserRoleService implements UserRoleServiceItf{
 
 	@Autowired
 	private UserRoleDaoItf userRoleDao;
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed({"ROLE_RH", "ROLE_VIS", "ROLE_RC"})
 	@Override
 	public UserRole getUserRoleById(String login) {

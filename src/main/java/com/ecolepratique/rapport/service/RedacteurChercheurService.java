@@ -13,16 +13,26 @@ import com.ecolepratique.rapport.entite.User;
 import com.ecolepratique.rapport.entite.UserRole;
 import com.ecolepratique.rapport.entite.Utilisateur;
 
-
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 @Service
 public class RedacteurChercheurService implements RedacteurChercheurServiceItf {
+	
 	@Autowired
 	private RedacteurChercheurDaoItf redacteurChercheurDao;
+	
 	@Autowired
 	private UserRoleDaoItf utilisateurRoleDao;
+	
 	@Autowired
 	private UserDaoItf userDao;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public RedacteurChercheur createRedacteurChercheur(RedacteurChercheur redacteurChercheur, String password) {
@@ -33,18 +43,27 @@ public class RedacteurChercheurService implements RedacteurChercheurServiceItf {
 		return redacteurChercheurDao.save(redacteurChercheur);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Stream<Utilisateur> listRedacteurChercheur() {
 		return redacteurChercheurDao.findAll().stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.RedacteurChercheur");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public RedacteurChercheur findRedacteurChercheurById(String id) {
 		return (RedacteurChercheur) redacteurChercheurDao.findById(id).get();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public RedacteurChercheur updateRedacteurChercheurByid(String id, RedacteurChercheur redacteurChercheur) {
@@ -54,6 +73,9 @@ public class RedacteurChercheurService implements RedacteurChercheurServiceItf {
 		return redacteurChercheurDao.save(redacteurChercheur);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public RedacteurChercheur deleteRedacteurChercheurById(String id) {
@@ -62,6 +84,9 @@ public class RedacteurChercheurService implements RedacteurChercheurServiceItf {
 		return redacteurChercheur;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@RolesAllowed("ROLE_RH")
 	@Override
 	public Stream<Utilisateur> listRedacteurChercheurByDateEmbauche(String date, String type) {
