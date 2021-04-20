@@ -25,6 +25,22 @@ public class RedacteurChercheur extends Utilisateur{
 	 * @param adresse Adresse du rédacteur/chercheur
 	 * @param codePostal Code postal du rédacteur/chercheur
 	 * @param ville Ville du rédacteur/chercheur
+	 * @param dateEmbauche Date d'embauche du rédacteur/chercheur
+	 * @param dateNaissance Date de naissance du rédacteur/chercheur
+	 */
+	public RedacteurChercheur(String login, String nom, String prenom, String adresse,
+			int codePostal, String ville, LocalDate dateEmbauche, LocalDate dateNaissance) {
+		super(login, nom, prenom, adresse, codePostal, ville, dateEmbauche, dateNaissance);
+	}
+	
+	/**
+	 * 
+	 * @param login Identifiant du rédacteur/chercheur
+	 * @param nom Nom du rédacteur/chercheur
+	 * @param prenom Prénom du rédacteur/chercheur
+	 * @param adresse Adresse du rédacteur/chercheur
+	 * @param codePostal Code postal du rédacteur/chercheur
+	 * @param ville Ville du rédacteur/chercheur
 	 * @param dateNaissance Date de naissance du rédacteur/chercheur
 	 */
 	public RedacteurChercheur(String login, String nom, String prenom, String adresse,

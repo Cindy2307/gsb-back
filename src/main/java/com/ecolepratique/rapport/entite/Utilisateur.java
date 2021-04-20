@@ -67,6 +67,7 @@ public abstract class Utilisateur implements Serializable{
 	private LocalDate dateEmbauche;
 	
 	public Utilisateur() {}
+	
 	/**
 	 * 
 	 * @param login Identifiant de l'utilisateur
@@ -86,6 +87,30 @@ public abstract class Utilisateur implements Serializable{
 		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
+		this.dateNaissance = dateNaissance;
+	}
+	
+	/**
+	 * 
+	 * @param login Identifiant de l'utilisateur
+	 * @param nom Nom de l'utilisateur
+	 * @param prenom Prénom de l'utilisateur
+	 * @param adresse Adresse de l'utilisateur
+	 * @param codePostal Code postal de l'utilisateur
+	 * @param ville Ville de l'utilisateur
+	 * @param dateEmbauche Date d'embauche de l'utilisateur
+	 * @param dateNaissance Date de naissance de l'utilisateur
+	 */
+	public Utilisateur(String login, String nom, String prenom, String adresse,
+			int codePostal, String ville, LocalDate dateEmbauche, LocalDate dateNaissance) {
+		super();
+		this.login = login;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.dateEmbauche = dateEmbauche;
 		this.dateNaissance = dateNaissance;
 	}
 

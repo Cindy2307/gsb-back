@@ -38,7 +38,7 @@ public class RapportVisiteBdApplication {
 		RhServiceItf rhService = ctx.getBean(RhServiceItf.class);
 		OffreEchantillonDaoItf offreDao = ctx.getBean(OffreEchantillonDaoItf.class);
 		
-		Visiteur visiteur1 = new Visiteur("Coco", "ollive", "cindy", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(1995, 07, 23));
+		Visiteur visiteur1 = new Visiteur("Coco", "ollive", "cindy", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(2021, 04, 20), LocalDate.of(1995, 07, 23));
 		User user1 = new User("Coco", "Coucou_13");
 		utilisateurRoleDao.save(new UserRole("Coco","VIS"));
 		visiteurDao.save(visiteur1);
@@ -58,7 +58,7 @@ public class RapportVisiteBdApplication {
 		visiteur1.addRapport(rapport2);
 		visiteurDao.save(visiteur1);
 		
-		Visiteur visiteur2 = new Visiteur("Coco2", "ollive2", "cindy2", "108 bd de la valbarelle BT D4", 13012, "Marseille", LocalDate.of(1995, 07, 25));
+		Visiteur visiteur2 = new Visiteur("Coco2", "ollive2", "cindy2", "108 bd de la valbarelle BT D4", 13012, "Marseille", LocalDate.of(2021, 04, 20), LocalDate.of(1995, 07, 25));
 		User user2 = new User("Coco2", "Coucou2_13");
 		utilisateurRoleDao.save(new UserRole("Coco2","VIS"));
 		visiteurDao.save(visiteur2);
@@ -79,25 +79,25 @@ public class RapportVisiteBdApplication {
 		visiteur2.addRapport(rapport3);
 		visiteurDao.save(visiteur2);
 		
-		RedacteurChercheur redacteur1 = new RedacteurChercheur("Coco3", "ollive3", "cindy3", "108 bd de la valbarelle BT D2", 13013, "Marseille", LocalDate.of(1995, 07, 27));
+		RedacteurChercheur redacteur1 = new RedacteurChercheur("Coco3", "ollive3", "cindy3", "108 bd de la valbarelle BT D2", 13013, "Marseille", LocalDate.of(2021, 04, 20), LocalDate.of(1995, 07, 27));
 		User user3 = new User("Coco3", "Coucou3_13");
 		utilisateurRoleDao.save(new UserRole("Coco3","RC"));
 		redacteurChercheurDao.save(redacteur1);
 		userDao.save(user3);
 		
-		Rh rh1 = new Rh("Coco4", "ollive4", "cindy4", "108 bd de la valbarelle BT D1", 13014, "Marseille", LocalDate.of(1995, 07, 31));
+		Rh rh1 = new Rh("Coco4", "ollive4", "cindy4", "108 bd de la valbarelle BT D1", 13014, "Marseille", LocalDate.of(2021, 04, 20), LocalDate.of(1995, 07, 31));
 		User user4 = new User("Coco4", "Coucou4_13");
 		utilisateurRoleDao.save(new UserRole("Coco4","RH"));
 		rhDao.save(rh1);
 		userDao.save(user4);
 		
-		Rh rh2 = new Rh("Coco5", "ollive5", "cindy5", "108 bd de la valbarelle BT D2", 13010, "Marseille", LocalDate.of(1995, 07, 3));
+		Rh rh2 = new Rh("Coco5", "ollive5", "cindy5", "108 bd de la valbarelle BT D2", 13010, "Marseille", LocalDate.of(2021, 04, 20), LocalDate.of(1995, 07, 3));
 		User user5 = new User("Coco5", "Coucou5_13");
 		utilisateurRoleDao.save(new UserRole("Coco5","RH"));
 		rhDao.save(rh2);
 		userDao.save(user5);
 		
-		Visiteur visiteur3 = new Visiteur("Benji", "Benjamin", "desMarseillais", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(1995, 07, 23));
+		Visiteur visiteur3 = new Visiteur("Benji", "Benjamin", "desMarseillais", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(2021, 04, 20), LocalDate.of(1995, 07, 23));
 		User user6 = new User("Benji", "Coucou6_13");
 		utilisateurRoleDao.save(new UserRole("Benji","VIS"));
 		visiteurDao.save(visiteur3);

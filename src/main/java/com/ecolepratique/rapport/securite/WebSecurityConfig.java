@@ -46,9 +46,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	// Permettre aprés modification de modifier des données 
         http.cors().and().csrf().disable();
         
+        // Configurer les cors
         http.cors().configurationSource(request -> {
             CorsConfiguration cors = new CorsConfiguration();
-            cors.setAllowedOriginPatterns(Arrays.asList("*"));
+            cors.setAllowedOriginPatterns(Arrays.asList("http://localhost:8080"));
             cors.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "OPTIONS"));
             cors.setAllowedHeaders(Arrays.asList("*"));
             cors.setAllowCredentials(true);
@@ -61,29 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Use AuthenticationEntryPoint to authenticate user/password
         http.httpBasic().authenticationEntryPoint(authEntryPoint);        
         
+        // Configurer le logout
         http.logout().permitAll();
         http.logout().logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
         }
-    
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        final CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-CSRF-TOKEN"));
-//        configuration.setExposedHeaders(Arrays.asList("Location", "Content-Disposition", "X-CSRF-TOKEN"));
-//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5501", "http://127.0.0.1:5501"));
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
-//        configuration.setMaxAge(Duration.ofMinutes(86400));
-//        configuration.setAllowCredentials(true);
-//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
-
- /*
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-    }
-    */
 }
