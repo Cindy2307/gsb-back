@@ -55,9 +55,4 @@ public interface RhServiceItf {
 	 */
 	Stream<Utilisateur> listRhByDateEmbauche(String date, String type);
 	
-	/**
-	 * 
-	 * @return Nombre de RH
-	 */
-	Long numberOfRh();
 }

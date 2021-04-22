@@ -6,9 +6,7 @@ import com.ecolepratique.rapport.entite.OffreEchantillon;
 import com.ecolepratique.rapport.entite.Rapport;
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.annotation.security.RolesAllowed;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

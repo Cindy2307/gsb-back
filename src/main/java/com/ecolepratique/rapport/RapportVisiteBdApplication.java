@@ -22,6 +22,7 @@ import com.ecolepratique.rapport.entite.Visiteur;
 import com.ecolepratique.rapport.service.MedicamentServiceItf;
 import com.ecolepratique.rapport.service.RapportServiceItf;
 import com.ecolepratique.rapport.service.RhServiceItf;
+import com.ecolepratique.rapport.service.UtilisateurServiceItf;
 
 @SpringBootApplication
 public class RapportVisiteBdApplication {
@@ -35,8 +36,8 @@ public class RapportVisiteBdApplication {
 		UserDaoItf userDao = ctx.getBean(UserDaoItf.class);
 		RedacteurChercheurDaoItf redacteurChercheurDao = ctx.getBean(RedacteurChercheurDaoItf.class);
 		RhDaoItf rhDao = ctx.getBean(RhDaoItf.class);
-		RhServiceItf rhService = ctx.getBean(RhServiceItf.class);
 		OffreEchantillonDaoItf offreDao = ctx.getBean(OffreEchantillonDaoItf.class);
+		UtilisateurServiceItf utilisateurService = ctx.getBean(UtilisateurServiceItf.class);
 		
 		Visiteur visiteur1 = new Visiteur("Coco", "ollive", "cindy", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(2021, 04, 20), LocalDate.of(1995, 07, 23));
 		User user1 = new User("Coco", "Coucou_13");
@@ -226,8 +227,7 @@ public class RapportVisiteBdApplication {
 		rapport2.addOffre(offre2);
 		
 		rapportDao.save(rapport2);
-		
-		System.out.println(rhService.numberOfRh());
+		utilisateurService.pourcentageTypesUtilisateurs();
 	}
 }
 

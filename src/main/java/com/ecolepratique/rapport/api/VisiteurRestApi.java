@@ -30,6 +30,7 @@ import com.ecolepratique.rapport.service.VisiteurServiceItf;
 @RequestMapping("/visiteur")
 @CrossOrigin("*")
 public class VisiteurRestApi {
+	
 	@Autowired
 	private VisiteurServiceItf visiteurService;
 	
