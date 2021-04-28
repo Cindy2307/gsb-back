@@ -227,7 +227,6 @@ public class RapportVisiteBdApplication {
 		rapport2.addOffre(offre2);
 		
 		rapportDao.save(rapport2);
-		utilisateurService.pourcentageTypesUtilisateurs();
 	}
 }
 

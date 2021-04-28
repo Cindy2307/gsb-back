@@ -2,6 +2,9 @@ package com.ecolepratique.rapport.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ecolepratique.rapport.dao.RedacteurChercheurDaoItf;
@@ -32,6 +35,7 @@ public class UtilisateurService  implements UtilisateurServiceItf{
 	/**
 	 * {@inheritDoc}
 	 */
+	@RolesAllowed("ROLE_RH")
 	@Override
 	public List<Double> pourcentageTypesUtilisateurs() {
 		
