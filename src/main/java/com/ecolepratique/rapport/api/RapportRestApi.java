@@ -1,9 +1,7 @@
 package com.ecolepratique.rapport.api;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.ecolepratique.rapport.entite.OffreEchantillon;
 import com.ecolepratique.rapport.entite.Rapport;
 import com.ecolepratique.rapport.service.RapportServiceItf;
 
@@ -100,16 +96,5 @@ public class RapportRestApi {
 	public List<Rapport> listRapportByDate(@RequestParam("date") String date, @RequestParam("type") String type) {
 		System.out.println("RapportRestApi - listRapportAfterDate");
 		return rapportService.listRapportByDate(date, type);
-	}
-	
-	/**
-	 * 
-	 * @param idRapport Id du rapport auquel on veut ajouter une offre
-	 * @param offre Offre qu'on veut ajouter au rapport
-	 * @return Offre créée
-	 */
-	@PostMapping("/{id}/offre")
-	public OffreEchantillon create(@PathVariable("id") Long idRapport, @RequestBody OffreEchantillon offre) {
-        return rapportService.createOffreEchantillon(idRapport, offre);
 	}	
 }

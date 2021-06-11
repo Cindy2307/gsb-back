@@ -1,7 +1,6 @@
 package com.ecolepratique.rapport.service;
 
 import java.util.List;
-import com.ecolepratique.rapport.entite.OffreEchantillon;
 import com.ecolepratique.rapport.entite.Rapport;
 
 /**
@@ -54,12 +53,4 @@ public interface RapportServiceItf {
 	 * @return Liste de tous les rapports rédigés avant ou après la date saisie
 	 */
 	List<Rapport> listRapportByDate(String date, String type);
-	
-	/**
-	 * 
-	 * @param idRapport Id du rapport pour lequel on souhaite créer une offre
-	 * @param offre Offre que l'on souhaite créer
-	 * @return Offre créée
-	 */
-	OffreEchantillon createOffreEchantillon(Long idRapport, OffreEchantillon offre);
 }

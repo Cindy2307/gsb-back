@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Configurer les cors
         http.cors().configurationSource(request -> {
             CorsConfiguration cors = new CorsConfiguration();
-            cors.setAllowedOriginPatterns(Arrays.asList("http://localhost:8080"));
+            cors.setAllowedOriginPatterns(Arrays.asList("*"));
             cors.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "OPTIONS"));
             cors.setAllowedHeaders(Arrays.asList("*"));
             cors.setAllowCredentials(true);
@@ -65,5 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Configurer le logout
         http.logout().permitAll();
         http.logout().logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
+        
+        //h2 console
+        http.headers().frameOptions().disable();
         }
 }

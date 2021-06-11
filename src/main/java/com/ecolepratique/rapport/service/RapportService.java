@@ -1,8 +1,6 @@
 package com.ecolepratique.rapport.service;
 
-import com.ecolepratique.rapport.dao.OffreEchantillonDaoItf;
 import com.ecolepratique.rapport.dao.RapportDaoItf;
-import com.ecolepratique.rapport.entite.OffreEchantillon;
 import com.ecolepratique.rapport.entite.Rapport;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,9 +18,6 @@ public class RapportService implements RapportServiceItf {
 	
 	@Autowired
 	private RapportDaoItf rapportDao;
-	
-	@Autowired
-	private OffreEchantillonDaoItf offreDao;
 	
 	/**
 	 * {@inheritDoc}
@@ -51,7 +46,6 @@ public class RapportService implements RapportServiceItf {
 		Rapport ancienRapport = findRapportById(id);
 		rapport.setId(id);
 		rapport.setDate(ancienRapport.getDate());
-		rapport.setOffres(ancienRapport.getOffres());
 		return rapportDao.save(rapport);
 	}
 	
@@ -95,18 +89,5 @@ public class RapportService implements RapportServiceItf {
 		else if(type.equals("before"))
 			rapports = rapportDao.findByDateBefore(LocalDate.of(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2])));
 		return rapports;
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@RolesAllowed("ROLE_VIS")
-	@Override
-	public OffreEchantillon createOffreEchantillon(Long idRapport, OffreEchantillon offre) {
-		offre = offreDao.save(offre);
-		Rapport rapport = findRapportById(idRapport);
-		rapport.addOffre(offre);
-		rapportDao.save(rapport);
-		return offre;
 	}
 }

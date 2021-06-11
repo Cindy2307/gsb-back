@@ -1,25 +1,23 @@
 package com.ecolepratique.rapport;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import com.ecolepratique.rapport.dao.OffreEchantillonDaoItf;
 import com.ecolepratique.rapport.dao.RapportDaoItf;
 import com.ecolepratique.rapport.dao.RedacteurChercheurDaoItf;
 import com.ecolepratique.rapport.dao.RhDaoItf;
 import com.ecolepratique.rapport.dao.UserDaoItf;
 import com.ecolepratique.rapport.dao.UserRoleDaoItf;
 import com.ecolepratique.rapport.dao.VisiteurDaoItf;
-import com.ecolepratique.rapport.entite.Medicament;
-import com.ecolepratique.rapport.entite.OffreEchantillon;
 import com.ecolepratique.rapport.entite.Rapport;
 import com.ecolepratique.rapport.entite.RedacteurChercheur;
 import com.ecolepratique.rapport.entite.Rh;
 import com.ecolepratique.rapport.entite.User;
 import com.ecolepratique.rapport.entite.UserRole;
 import com.ecolepratique.rapport.entite.Visiteur;
-import com.ecolepratique.rapport.service.MedicamentServiceItf;
 import com.ecolepratique.rapport.service.RapportServiceItf;
 import com.ecolepratique.rapport.service.RhServiceItf;
 import com.ecolepratique.rapport.service.UtilisateurServiceItf;
@@ -31,13 +29,10 @@ public class RapportVisiteBdApplication {
 		ApplicationContext ctx = SpringApplication.run(RapportVisiteBdApplication.class, args);
 		RapportDaoItf  rapportDao = ctx.getBean(RapportDaoItf.class);
 		VisiteurDaoItf visiteurDao = ctx.getBean(VisiteurDaoItf.class);
-		MedicamentServiceItf medicamentService = ctx.getBean(MedicamentServiceItf.class);
 		UserRoleDaoItf utilisateurRoleDao = ctx.getBean(UserRoleDaoItf.class);
 		UserDaoItf userDao = ctx.getBean(UserDaoItf.class);
 		RedacteurChercheurDaoItf redacteurChercheurDao = ctx.getBean(RedacteurChercheurDaoItf.class);
 		RhDaoItf rhDao = ctx.getBean(RhDaoItf.class);
-		OffreEchantillonDaoItf offreDao = ctx.getBean(OffreEchantillonDaoItf.class);
-		UtilisateurServiceItf utilisateurService = ctx.getBean(UtilisateurServiceItf.class);
 		
 		Visiteur visiteur1 = new Visiteur("Coco", "ollive", "cindy", "108 bd de la valbarelle BT D5", 13011, "Marseille", LocalDate.of(2021, 04, 20), LocalDate.of(1995, 07, 23));
 		User user1 = new User("Coco", "Coucou_13");
@@ -48,7 +43,6 @@ public class RapportVisiteBdApplication {
 				+ "Il est utilisé dans le traitement symptomatique des toux sèches. Le praticien a paru être trés interessé. Je lui ai laissé 4 échantillons afin qu'il puisse le tester"
 				+ " J'ai été agréablement de son retour et espére qu'il sera un contact moteur pour l'avenir. Cette visite est une totale réussite."
 				, "Ce praticien n'a pas encore été visité");
-		System.out.println("Taille chaine=" + rapport1.getBilan().length());
 		Rapport rapport2 = new Rapport(LocalDate.of(2020, 10, 22), "J'ai présenté notre nouveau médicament, HELICIDINE, au pneumologue, Monsieur Raphaelle, qui a une action sédative sur la toux. \"\n" + 
 				"				+ \"Il est utilisé dans le traitement symptomatique des toux sèches. Le praticien a paru septique. Je lui ai laissé 6 échantillons afin qu'il puisse le tester et lui prouvé l'efficacité de ce médicament\"\n" + 
 				"				+ \" Son retour n'a pas été bon, je lui ai dit que je le recontacterais dans 3 mois, le temps qu'il teste le médicament et qu'il puisse faire un prmeier retour. Cette visite a été délicate.\"\n" + 
@@ -103,128 +97,6 @@ public class RapportVisiteBdApplication {
 		utilisateurRoleDao.save(new UserRole("Benji","VIS"));
 		visiteurDao.save(visiteur3);
 		userDao.save(user6);
-		
-		Medicament medicament1 = new Medicament("LEVOTHYROX"); 
-		Medicament medicament2 = new Medicament("TAHOR"); 
-		Medicament medicament3 = new Medicament("HELICIDINE"); 
-		Medicament medicament4 = new Medicament("ANTARENE"); 
-		Medicament medicament5 = new Medicament("IMODIUM"); 
-		Medicament medicament6 = new Medicament("ISIMIG"); 
-		Medicament medicament7 = new Medicament("SPEDIFEN"); 
-		Medicament medicament8 = new Medicament("IXPRIM"); 
-		Medicament medicament9 = new Medicament("FORLAX"); 
-		Medicament medicament10 = new Medicament("LAMALINE"); 
-		Medicament medicament11 = new Medicament("DAFLON"); 
-		Medicament medicament12 = new Medicament("CELESTENE"); 
-		
-		medicament12.addEffet("Hypokaliémie");
-		medicament12.addEffet("Alcalose métabolique");
-		medicament12.addEffet("Rétention hydrosodée");
-		medicament12.addEffet("Hypertension artérielle");
-		medicament12.addContreIndication("Herpès");
-		medicament12.addContreIndication("Varicelle");
-		medicament12.addContreIndication("Zona");
-		medicament12.addContreIndication("Etat psychotique non contrôlé");
-		
-		medicament11.addEffet("Céphalée");
-		medicament11.addEffet("Malaise");
-		medicament11.addEffet("Diarrhée");
-		medicament11.addEffet("Dyspepsie");
-		medicament11.addContreIndication("Hypersensibilité flavonoïdes");
-		medicament11.addContreIndication("Hypersensibilité diosmine");
-		medicament11.addContreIndication("Hypersensibilité hespéridine");
-		
-		medicament10.addEffet("Choc anaphylactique");
-		medicament10.addEffet("Oedème de Quincke");
-		medicament10.addEffet("Erythème cutané");
-		medicament10.addEffet("Urticaire allergique");
-		medicament10.addContreIndication("Asthme");
-		medicament10.addContreIndication("Grossesse");
-		medicament10.addContreIndication("Allaitement");
-		
-		medicament9.addEffet("Diarrhée");
-		medicament9.addEffet("Nausée");
-		medicament9.addEffet("Vomissement");
-		medicament9.addContreIndication("Hypersensibilité macrogol");
-		medicament9.addContreIndication("Maladie de Crohn");
-		medicament9.addContreIndication("Perforation digestive");
-		
-		medicament8.addEffet("Palpitation");
-		medicament8.addEffet("Tachycardie");
-		medicament8.addEffet("Arythmie");
-		medicament8.addContreIndication("Hypersensibilité tramadol");
-		medicament8.addContreIndication("Epilepsie non contrôlée");
-		medicament8.addContreIndication("Grossesse");
-		
-		
-		medicament7.addEffet("Thrombopénie");
-		medicament7.addEffet("Agranulocytose");
-		medicament7.addEffet("Anémie aplasique");
-		medicament7.addEffet("Anémie");
-		medicament7.addContreIndication("Hémorragie gastro-intestinale");
-		medicament7.addContreIndication("Hémorragie cérébrovasculaire");
-		medicament7.addContreIndication("Diathèse hémorragique");
-		
-		
-		medicament5.addEffet("Céphalée");
-		medicament5.addEffet("Sensation vertigineuse");
-		medicament5.addEffet("Somnolence");
-		medicament5.addEffet("Perte de conscience");
-		medicament5.addContreIndication("Hypersensibilité lopéramide");
-		medicament5.addContreIndication("Colite pseudomembraneuse");
-		medicament5.addContreIndication("Intolérance au galactose");
-		medicament5.addContreIndication("Déficit en lactase");
-		
-		medicament6.addEffet("Angioedème");
-		medicament6.addEffet("Anaphylaxie");
-		medicament6.addEffet("Déshydratation");
-		medicament6.addEffet("Hypoglycémie");
-		medicament6.addContreIndication("Pathologie cardiaque ischémique");
-		medicament6.addContreIndication("Vasospasme coronarien");
-		medicament6.addContreIndication("Pathologie vasculaire périphérique");
-		
-		medicament1.addEffet("Nausées");
-		medicament1.addEffet("Maux de tête");
-		medicament1.addEffet("Démangeaisons");
-		medicament1.addContreIndication("Gentamicine");
-		medicament1.addContreIndication("Halofantrine");
-		
-		medicament2.addEffet("Somnolence");
-		medicament2.addEffet("Diarrhée");
-		medicament2.addContreIndication("Lincomycine");
-		medicament2.addContreIndication("Pindolol");
-		
-		medicament3.addEffet("Vision floue");
-		medicament3.addEffet("Fatigue");
-		medicament3.addContreIndication("Propafénone");
-		medicament3.addContreIndication("Quinine");
-		
-		medicament4.addEffet("Somnolence");
-		medicament4.addEffet("Vision floue");
-		medicament4.addEffet("Eruption cutanée");
-		medicament4.addContreIndication("Halofantrine");
-		medicament4.addContreIndication("Pindolol");
-		medicament4.addContreIndication("Quinine");
-		
-		medicamentService.create(medicament1);
-		medicamentService.create(medicament2);
-		medicamentService.create(medicament3);
-		medicamentService.create(medicament4);
-		medicamentService.create(medicament5);
-		medicamentService.create(medicament6);
-		medicamentService.create(medicament7);
-		medicamentService.create(medicament8);
-		medicamentService.create(medicament9);
-		medicamentService.create(medicament10);
-		medicamentService.create(medicament11);
-		medicamentService.create(medicament12);
-		
-		OffreEchantillon offre1 = new OffreEchantillon(10, medicament7);
-		OffreEchantillon offre2 = new OffreEchantillon(5, medicament7);
-		offreDao.save(offre1);
-		offreDao.save(offre2);
-		rapport2.addOffre(offre1);
-		rapport2.addOffre(offre2);
 		
 		rapportDao.save(rapport2);
 	}

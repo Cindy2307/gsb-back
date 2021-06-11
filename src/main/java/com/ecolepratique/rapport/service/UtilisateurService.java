@@ -1,6 +1,7 @@
 package com.ecolepratique.rapport.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
@@ -39,7 +40,6 @@ public class UtilisateurService  implements UtilisateurServiceItf{
 	@Override
 	public List<Double> pourcentageTypesUtilisateurs() {
 		
-		List<Double>listePourcentages = new ArrayList();	
 		double nombreUtilisateurs = utilisateurDao.findAll().stream().count();
 		double nombreVisiteurs = visiteurDao.findAll().stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.Visiteur").count();
 		double nombreRedacteursChercheurs = redacteurChercheurDao.findAll().stream().filter((user) -> user.getClass().getName() == "com.ecolepratique.rapport.entite.RedacteurChercheur").count();
@@ -49,9 +49,7 @@ public class UtilisateurService  implements UtilisateurServiceItf{
 		double pourcentageRedacteursChercheurs = nombreRedacteursChercheurs * 100 / nombreUtilisateurs;
 		double pourcentageRh = nombreRh * 100 / nombreUtilisateurs;
 		
-		listePourcentages.add(pourcentageVisiteurs);
-		listePourcentages.add(pourcentageRedacteursChercheurs);
-		listePourcentages.add(pourcentageRh);
+		List<Double>listePourcentages = Arrays.asList(pourcentageVisiteurs, pourcentageRh, pourcentageRedacteursChercheurs);	
 		
 		return listePourcentages;
 	}

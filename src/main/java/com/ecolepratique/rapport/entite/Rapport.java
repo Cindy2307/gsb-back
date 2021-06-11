@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
@@ -23,7 +24,7 @@ import javax.validation.constraints.NotNull;
 public class Rapport {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private LocalDate date;
@@ -38,12 +39,7 @@ public class Rapport {
 	@NotEmpty(message="Le motif ne doit pas être vide.")
 	private String motif;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
-	private List<OffreEchantillon> offres;
-	
-	public Rapport() {
-		offres = new ArrayList<>();
-	}
+	public Rapport() {}
 	
 	/**
 	 * 
@@ -55,21 +51,12 @@ public class Rapport {
 		this.date = date;
 		this.bilan = bilan;
 		this.motif = motif;
-		offres = new ArrayList<>();
 	}
 
-	/**
-	 * 
-	 * @param offre Offre à ajouter
-	 */
-	public void addOffre(OffreEchantillon offre) {
-		offres.add(offre);
-	}
 	
 	@Override
 	public String toString() {
-		return "Rapport [id=" + id + ", date=" + date + ", bilan=" + bilan + ", motif=" + motif + ", medicaments="
-				+ offres + "]";
+		return "Rapport [id=" + id + ", date=" + date + ", bilan=" + bilan + ", motif=" + motif + "]";
 	}
 	
 	/**
@@ -134,21 +121,5 @@ public class Rapport {
 	 */
 	public void setMotif(String motif) {
 		this.motif = motif;
-	}
-	
-	/**
-	 * 
-	 * @return Liste d'offres d'échantillons
-	 */
-	public List<OffreEchantillon> getOffres() {
-		return offres;
-	}
-	
-	/**
-	 * 
-	 * @param offres Liste d'offres d'échantillons saisie
-	 */
-	public void setOffres(List<OffreEchantillon> offres) {
-		this.offres = offres;
 	}
 }
