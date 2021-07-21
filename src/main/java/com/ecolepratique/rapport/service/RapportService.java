@@ -31,7 +31,7 @@ public class RapportService implements RapportServiceItf {
 	/**
 	 * {@inheritDoc}
 	 */
-	@RolesAllowed("ROLE_RC")
+	//@RolesAllowed("ROLE_RC")
 	@Override
 	public List<Rapport> listRapport() {
 		return rapportDao.findAll();
